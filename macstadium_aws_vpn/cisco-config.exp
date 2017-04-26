@@ -1,0 +1,55 @@
+#!/usr/bin/expect
+
+log_user 0
+
+set username [lindex $argv 0];
+set password [lindex $argv 1];
+set address [lindex $argv 2];
+
+send_user "\n\nLogging into the Cisco...\n"
+spawn ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 $username@$address
+expect " password:"
+send "$password\r"
+expect "> "
+send "enable\r"
+expect "Password: "
+send "$password\r"
+expect "$username# "
+
+send_user "Removing previous MacStadium AWS VPN configuration (if any)..."
+send "configure terminal\r"
+expect "$username\(config\)# "
+
+set i [open "cisco.remove"]
+set config_lines [split [read -nonewline $i] "\n"]
+
+foreach config_line $config_lines {
+	send "$config_line\n"
+	expect "# "
+	send_user "."
+}
+
+send_user "\nConfiguring the Cisco..."
+send "configure terminal\r"
+expect "$username\(config\)# "
+
+set i [open "cisco.config"]
+set config_lines [split [read -nonewline $i] "\n"]
+
+foreach config_line $config_lines {
+	send "$config_line\n"
+	expect "# "
+	send_user "."
+}
+
+send_user "\nSaving the configuration...\n"
+send "write memory\r"
+expect "$username\(config-tunnel-ipsec\)# "
+
+send_user "Logging out of the Cisco...\n"
+send "end\r"
+expect "$username# "
+send "logout\r"
+send_user "Done!\n\n"
+
+# Done!
