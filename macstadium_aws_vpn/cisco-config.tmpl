@@ -1,41 +1,41 @@
 ! Custom Cisco configuration for AWS VPN
 !
-object network Network_AWS
+object network Network_MacStadiumVPN_AWS
  subnet ${aws_network_addr} ${aws_network_mask}
 !
-object network Network_MacStadium
+object network Network_MacStadiumVPN_MacStadium
  subnet ${macstadium_network_addr} ${macstadium_network_mask}
 !
-access-list Outside_cryptomap_1 extended permit ip ${macstadium_network_addr} ${macstadium_network_mask} ${aws_network_addr} ${aws_network_mask}
-access-list Outside_cryptomap_2 extended permit ip ${macstadium_network_addr} ${macstadium_network_mask} ${aws_network_addr} ${aws_network_mask}
+access-list Outside_cryptomap_2501 extended permit ip ${macstadium_network_addr} ${macstadium_network_mask} ${aws_network_addr} ${aws_network_mask}
+access-list Outside_cryptomap_2502 extended permit ip ${macstadium_network_addr} ${macstadium_network_mask} ${aws_network_addr} ${aws_network_mask}
 !
-nat (Private-1,Outside) source static Network_MacStadium Network_MacStadium destination static Network_AWS Network_AWS no-proxy-arp route-lookup
+nat (Private-1,Outside) source static Network_MacStadiumVPN_MacStadium Network_MacStadiumVPN_MacStadium destination static Network_MacStadiumVPN_AWS Network_MacStadiumVPN_AWS no-proxy-arp route-lookup
 !
-crypto map Outside_map 1 match address Outside_cryptomap_1
-crypto map Outside_map 1 set pfs
-crypto map Outside_map 1 set peer ${tunnel_1_address}
-crypto map Outside_map 1 set ikev1 transform-set ESP-AES-128-SHA ESP-AES-128-MD5 ESP-AES-192-SHA ESP-AES-192-MD5 ESP-AES-256-SHA ESP-AES-256-MD5 ESP-3DES-SHA ESP-3DES-MD5 ESP-DES-SHA ESP-DES-MD5
-crypto map Outside_map 2 match address Outside_cryptomap_2
-crypto map Outside_map 2 set pfs
-crypto map Outside_map 2 set peer ${tunnel_2_address}
-crypto map Outside_map 2 set ikev1 transform-set ESP-AES-128-SHA ESP-AES-128-MD5 ESP-AES-192-SHA ESP-AES-192-MD5 ESP-AES-256-SHA ESP-AES-256-MD5 ESP-3DES-SHA ESP-3DES-MD5 ESP-DES-SHA ESP-DES-MD5
+crypto map Outside_map 2501 match address Outside_cryptomap_2501
+crypto map Outside_map 2501 set pfs
+crypto map Outside_map 2501 set peer ${tunnel_1_address}
+crypto map Outside_map 2501 set ikev1 transform-set ESP-AES-128-SHA ESP-AES-128-MD5 ESP-AES-192-SHA ESP-AES-192-MD5 ESP-AES-256-SHA ESP-AES-256-MD5 ESP-3DES-SHA ESP-3DES-MD5 ESP-DES-SHA ESP-DES-MD5
+crypto map Outside_map 2502 match address Outside_cryptomap_2502
+crypto map Outside_map 2502 set pfs
+crypto map Outside_map 2502 set peer ${tunnel_2_address}
+crypto map Outside_map 2502 set ikev1 transform-set ESP-AES-128-SHA ESP-AES-128-MD5 ESP-AES-192-SHA ESP-AES-192-MD5 ESP-AES-256-SHA ESP-AES-256-MD5 ESP-3DES-SHA ESP-3DES-MD5 ESP-DES-SHA ESP-DES-MD5
 !
-group-policy Tunnel_1 internal
-group-policy Tunnel_1 attributes
+group-policy MacStadiumVPN_AWS_Tunnel_2501 internal
+group-policy MacStadiumVPN_AWS_Tunnel_2501 attributes
  vpn-tunnel-protocol ikev1
-group-policy Tunnel_2 internal
-group-policy Tunnel_2 attributes
+group-policy MacStadiumVPN_AWS_Tunnel_2502 internal
+group-policy MacStadiumVPN_AWS_Tunnel_2502 attributes
  vpn-tunnel-protocol ikev1
 !
 tunnel-group ${tunnel_1_address} type ipsec-l2l
 tunnel-group ${tunnel_1_address} general-attributes
- default-group-policy Tunnel_2
+ default-group-policy MacStadiumVPN_AWS_Tunnel_2501
 tunnel-group ${tunnel_1_address} ipsec-attributes
  ikev1 pre-shared-key ${tunnel_1_preshared_key}
  isakmp keepalive threshold 10 retry 3
 tunnel-group ${tunnel_2_address} type ipsec-l2l
 tunnel-group ${tunnel_2_address} general-attributes
- default-group-policy Tunnel_1
+ default-group-policy MacStadiumVPN_AWS_Tunnel_2502
 tunnel-group ${tunnel_2_address} ipsec-attributes
  ikev1 pre-shared-key ${tunnel_2_preshared_key}
  isakmp keepalive threshold 10 retry 3

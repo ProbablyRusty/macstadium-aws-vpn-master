@@ -3,17 +3,17 @@
 clear configure tunnel-group ${tunnel_1_address}
 clear configure tunnel-group ${tunnel_2_address}
 !
-clear configure group-policy Tunnel_1
-clear configure group-policy Tunnel_2
+clear configure group-policy MacStadiumVPN_AWS_Tunnel_2501
+clear configure group-policy MacStadiumVPN_AWS_Tunnel_2502
 !
-clear configure crypto map Outside_map 1
-clear configure crypto map Outside_map 2
-clear configure access-list Outside_cryptomap_1
-clear configure access-list Outside_cryptomap_2
+clear configure crypto map Outside_map 2501
+clear configure crypto map Outside_map 2502
+clear configure access-list Outside_cryptomap_2501
+clear configure access-list Outside_cryptomap_2502
 !
-no nat (Private-1,Outside) source static Network_MacStadium Network_MacStadium destination static Network_AWS Network_AWS no-proxy-arp route-lookup
+no nat (Private-1,Outside) source static Network_MacStadiumVPN_MacStadium Network_MacStadiumVPN_MacStadium destination static Network_MacStadiumVPN_AWS Network_MacStadiumVPN_AWS no-proxy-arp route-lookup
 !
-no object network Network_AWS
-no object network Network_MacStadium
+no object network Network_MacStadiumVPN_AWS
+no object network Network_MacStadiumVPN_MacStadium
 !
 ! This is the end of the Cisco configuration removal file. We are done!
