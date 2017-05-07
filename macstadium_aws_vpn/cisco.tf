@@ -26,16 +26,16 @@ resource "null_resource" "cisco_config_file" {
   }
 
   provisioner "local-exec" {
-    command = "printf '${data.template_file.cisco_config_file.rendered}' > ${path.module}/cisco.config"
+    command = "printf '${data.template_file.cisco_config_file.rendered}' > ${replace(path.module, "/[ ]/", "\\ ")}/cisco.config"
   }
 
   provisioner "local-exec" {
-    command = "printf '${data.template_file.cisco_remove_config_file.rendered}' > ${path.module}/cisco.remove.tmp"
+    command = "printf '${data.template_file.cisco_remove_config_file.rendered}' >${replace(path.module, "/[ ]/", "\\ ")}/cisco.remove.tmp"
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = "rm -f ${path.module}/cisco.config"
+    command = "rm -f ${replace(path.module, "/[ ]/", "\\ ")}/cisco.config"
   }
 }
 
@@ -50,17 +50,17 @@ data "template_file" "cisco_remove_config_file" {
 
 resource "null_resource" "cisco_remove_config_file" {
   provisioner "local-exec" {
-    command = "printf '${data.template_file.cisco_remove_config_file.rendered}' > ${path.module}/cisco.remove"
+    command = "printf '${data.template_file.cisco_remove_config_file.rendered}' > ${replace(path.module, "/[ ]/", "\\ ")}/cisco.remove"
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = "rm -f ${path.module}/cisco.remove"
+    command = "rm -f ${replace(path.module, "/[ ]/", "\\ ")}/cisco.remove"
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = "rm -f ${path.module}/cisco.remove.tmp"
+    command = "rm -f ${replace(path.module, "/[ ]/", "\\ ")}/cisco.remove.tmp"
   }
 }
 
@@ -83,15 +83,15 @@ resource "null_resource" "cisco_vpn_configuration" {
   }
 
   provisioner "local-exec" {
-    command = "cd ${path.module}; /usr/bin/expect ${path.module}/cisco-config.exp ${var.cisco_firewall_username} ${var.cisco_firewall_password} ${var.cisco_inside_1_ip_address}"
+    command = "cd ${replace(path.module, "/[ ]/", "\\ ")}; /usr/bin/expect ${replace(path.module, "/[ ]/", "\\ ")}/cisco-config.exp ${var.cisco_firewall_username} ${var.cisco_firewall_password} ${var.cisco_inside_1_ip_address}"
   }
 
   provisioner "local-exec" {
-    command = "cp ${path.module}/cisco.remove.tmp ${path.module}/cisco.remove"
+    command = "cp ${replace(path.module, "/[ ]/", "\\ ")}/cisco.remove.tmp ${replace(path.module, "/[ ]/", "\\ ")}/cisco.remove"
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = "cd ${path.module}; /usr/bin/expect ${path.module}/cisco-remove.exp ${var.cisco_firewall_username} ${var.cisco_firewall_password} ${var.cisco_inside_1_ip_address}"
+    command = "cd ${replace(path.module, "/[ ]/", "\\ ")}; /usr/bin/expect ${replace(path.module, "/[ ]/", "\\ ")}/cisco-remove.exp ${var.cisco_firewall_username} ${var.cisco_firewall_password} ${var.cisco_inside_1_ip_address}"
   }
 }

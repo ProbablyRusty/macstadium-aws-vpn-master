@@ -93,33 +93,33 @@ resource "null_resource" "macstadium_aws_key" {
   count = "${var.create_vpc}"
 
   provisioner "local-exec" {
-    command = "rm -f ${path.module}/macstadium_aws_key*"
+    command = "rm -f ${replace(path.module, "/[ ]/", "\\ ")}/macstadium_aws_key*"
   }
 
   provisioner "local-exec" {
-    command = "rm -f ${path.root}/macstadium_aws_key*"
+    command = "rm -f ${replace(path.root, "/[ ]/", "\\ ")}/macstadium_aws_key*"
   }
 
   provisioner "local-exec" {
-    command = "ssh-keygen -t rsa  -N '' -C 'macstadium_aws_key' -f ${path.module}/macstadium_aws_key"
+    command = "ssh-keygen -t rsa  -N '' -C 'macstadium_aws_key' -f ${replace(path.module, "/[ ]/", "\\ ")}/macstadium_aws_key"
   }
 
   provisioner "local-exec" {
-    command = "mv ${path.module}/macstadium_aws_key ${path.root}/macstadium_aws_key"
+    command = "mv ${replace(path.module, "/[ ]/", "\\ ")}/macstadium_aws_key ${replace(path.root, "/[ ]/", "\\ ")}/macstadium_aws_key"
   }
 
   provisioner "local-exec" {
-    command = "chmod 600 ${path.root}/macstadium_aws_key"
-  }
-
-  provisioner "local-exec" {
-    when    = "destroy"
-    command = "rm -f ${path.root}/macstadium_aws_key"
+    command = "chmod 600 ${replace(path.root, "/[ ]/", "\\ ")}/macstadium_aws_key"
   }
 
   provisioner "local-exec" {
     when    = "destroy"
-    command = "echo PLACEHOLDER > ${path.module}/macstadium_aws_key.pub"
+    command = "rm -f ${replace(path.root, "/[ ]/", "\\ ")}/macstadium_aws_key"
+  }
+
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "echo PLACEHOLDER > ${replace(path.module, "/[ ]/", "\\ ")}/macstadium_aws_key.pub"
   }
 }
 
@@ -140,9 +140,9 @@ resource "aws_instance" "aws_test_instance" {
 }
 
 output "aws_vpc_id" {
-  value = "${aws_vpc.aws_vpc.id}"
+  value = ["${aws_vpc.aws_vpc.*.id}"]
 }
 
 output "aws_vpc_route_table_id" {
-  value = "${aws_route_table.aws_vpc_route_table.id}"
+  value = ["${aws_route_table.aws_vpc_route_table.*.id}"]
 }
