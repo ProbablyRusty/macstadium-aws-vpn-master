@@ -133,29 +133,29 @@ Nice work! There is no Step 3.
 Appendix: Reference List of Variables
 -------------------------------------
 
-- [`needed_in_aws`](#needed_in_aws)
-- [`aws_vpc_cidr`](#aws_vpc_cidr)`
-- [`existing_vpc_id`](#existing_vpc_id)`
-- [`existing_vgw_id`](#existing_vgw_id)`
-- [`vpc_route_table_ids`](#vpc_route_table_ids)`
-- [`aws_region`](#aws_region)`
-- [`aws_access_key`](#aws_access_key)`
-- [`aws_secret_key`](#aws_secret_key)`
-- [`macstadium_cidr`](#macstadium_cidr)`
-- [`cisco_inside_1_ip_address`](#cisco_inside_1_ip_address)`
-- [`cisco_wan_ip_address`](#cisco_wan_ip_address)`
-- [`cisco_firewall_username`](#cisco_firewall_username)`
-- [`cisco_firewall_password`](#cisco_firewall_password)`
-- [`macstadium_vcenter_management_username`](#macstadium_vcenter_management_username)`
-- [`macstadium_vcenter_management_password`](#macstadium_vcenter_management_password)`
-- [`macstadium_vcenter_management_ip_address`](#macstadium_vcenter_management_ip_address)`
-- [`macstadium_vcenter_datacenter_name`](#macstadium_vcenter_datacenter_name)`
-- [`macstadium_vcenter_cluster_name`](#macstadium_vcenter_cluster_name)`
-- [`macstadium_vcenter_datastore_name`](#macstadium_vcenter_datastore_name)`
-- [`create_macstadium_test_instances`](#create_macstadium_test_instances)`
-- [`macstadium_vcenter_vm_template_name`](#macstadium_vcenter_vm_template_name)`
-- [`number_of_aws_test_instances`](#number_of_aws_test_instances)`
-- [`number_of_macstadium_test_instances`](#number_of_macstadium_test_instances)`
+- [`needed_in_aws`](#variable-needed_in_aws)
+- [`aws_vpc_cidr`](#variable-aws_vpc_cidr)`
+- [`existing_vpc_id`](#variable-existing_vpc_id)
+- [`existing_vgw_id`](#variable-existing_vgw_id)
+- [`vpc_route_table_ids`](#variable-vpc_route_table_ids)
+- [`aws_region`](#variable-aws_region)
+- [`aws_access_key`](#variable-aws_access_key)
+- [`aws_secret_key`](#variable-aws_secret_key)
+- [`macstadium_cidr`](#variable-macstadium_cidr)
+- [`cisco_inside_1_ip_address`](#variable-cisco_inside_1_ip_address)
+- [`cisco_wan_ip_address`](#variable-cisco_wan_ip_address)
+- [`cisco_firewall_username`](#variable-cisco_firewall_username)
+- [`cisco_firewall_password`](#variable-cisco_firewall_password)
+- [`macstadium_vcenter_management_username`](#variable-macstadium_vcenter_management_username)
+- [`macstadium_vcenter_management_password`](#variable-macstadium_vcenter_management_password)
+- [`macstadium_vcenter_management_ip_address`](#variable-macstadium_vcenter_management_ip_address)
+- [`macstadium_vcenter_datacenter_name`](#variable-macstadium_vcenter_datacenter_name)
+- [`macstadium_vcenter_cluster_name`](#variable-macstadium_vcenter_cluster_name)
+- [`macstadium_vcenter_datastore_name`](#variable-macstadium_vcenter_datastore_name)
+- [`create_macstadium_test_instances`](#variable-create_macstadium_test_instances)
+- [`macstadium_vcenter_vm_template_name`](#variable-macstadium_vcenter_vm_template_name)
+- [`number_of_aws_test_instances`](#variable-number_of_aws_test_instances)
+- [`number_of_macstadium_test_instances`](#variable-number_of_macstadium_test_instances)
 
 
 ##### Variable: `needed_in_aws`
