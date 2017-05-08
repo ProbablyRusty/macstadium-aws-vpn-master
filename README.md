@@ -22,11 +22,11 @@ Three use cases are supported:
 
 The general process of deploying this automation is not only simple and straightforward, it is exactly the same for all three use cases:
 
-1. Customize some variables
+1. [Customize some variables](#step-1-customize-variables)
 
-1. Run `terraform apply`
+1. [Run `terraform apply`](#step-2-run-terraform)
 
-1. Profit
+1. [Profit](#step-3-profit)
 
 
 Before You Begin
@@ -52,7 +52,7 @@ First some prerequisites:
 
 - Several credentials and technical details about your MacStadium Hosted Mac Private Cloud will be needed as well. Typically, all of this information is supplied by MacStadium in a custom spreadsheet document titled `YourName_IP_PLAN.xlsx`, or something similar.  Contact MacStadium with questions.
 
-- When you run `terraform apply in Step 2 (below), your computer will need to be connected to the per-user IPSec VPN your MacStadium Cisco firewall, which is enabled by default as part of your Hosted Mac Private Cloud. MacStadium has posted [setup instructions](http://www.macstadium.com/blog/how-to-setup-a-cisco-vpn-connection-in-mac-os-x-and-windows/) on how to accomplish that. Again, make sure you are connected to this VPN from your computer prior to proceeding with Step 2 (below).
+- When you run `terraform apply in [Step 2 (below)](#step-2-run-terraform), your computer will need to be connected to the per-user IPSec VPN your MacStadium Cisco firewall, which is enabled by default as part of your Hosted Mac Private Cloud. MacStadium has posted [setup instructions](http://www.macstadium.com/blog/how-to-setup-a-cisco-vpn-connection-in-mac-os-x-and-windows/) on how to accomplish that. Again, make sure you are connected to this VPN from your computer prior to proceeding with [Step 2 (below)](#step-2-run-terraform).
 
 Step 1: Customize Variables
 -------------------
