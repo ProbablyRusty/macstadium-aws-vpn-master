@@ -65,7 +65,7 @@ But generally, you will simply need to edit each variable with appropriate value
 
 Note that the `needed_in_aws` variable corresponds to the three supported use cases summarized at the beginning of this ReadMe, and should be set accordingly to your particular use case. Here are some specifics on what that means:
 
-| Which <br/> Use Case? | Value To Use For <br/> `needed_in_aws` | Creates <br/> VPC | Creates <br/> Gateway | Creates <br/> VPN | AWS <br/> Test Instances | MacStadium <br/> Test VMs |
+| Which <br/> Use Case? | Value To Use For <br/> [`needed_in_aws`](#variable-needed_in_aws) | Creates <br/> VPC | Creates <br/> Gateway | Creates <br/> VPN | AWS <br/> Test Instances | MacStadium <br/> Test VMs |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | Build Everything | `create_vpc` | Yes | Yes | Yes | Optional | Optional |
 | VPC Already Exists | `create_gateway` | No | Yes | Yes | No | Optional |
