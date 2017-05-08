@@ -52,7 +52,7 @@ First some prerequisites:
 
 - Several credentials and technical details about your MacStadium Hosted Mac Private Cloud will be needed as well. Typically, all of this information is supplied by MacStadium in a custom spreadsheet document titled `YourName_IP_PLAN.xlsx`, or something similar.  Contact MacStadium with questions.
 
-- When you run `terraform apply in [Step 2 (below)](#step-2-run-terraform), your computer will need to be connected to the per-user IPSec VPN your MacStadium Cisco firewall, which is enabled by default as part of your Hosted Mac Private Cloud. MacStadium has posted [setup instructions](http://www.macstadium.com/blog/how-to-setup-a-cisco-vpn-connection-in-mac-os-x-and-windows/) on how to accomplish that. Again, make sure you are connected to this VPN from your computer prior to proceeding with [Step 2 (below)](#step-2-run-terraform).
+- When you run `terraform apply` in [Step 2 (below)](#step-2-run-terraform), your computer will need to be connected to the per-user IPSec VPN your MacStadium Cisco firewall, which is enabled by default as part of your Hosted Mac Private Cloud. MacStadium has posted [setup instructions](http://www.macstadium.com/blog/how-to-setup-a-cisco-vpn-connection-in-mac-os-x-and-windows/) on how to accomplish that. Again, make sure you are connected to this VPN from your computer prior to proceeding with [Step 2 (below)](#step-2-run-terraform).
 
 Step 1: Customize Variables
 -------------------
